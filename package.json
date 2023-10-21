@@ -1,8 +1,8 @@
 {
   "name": "vitors-app",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "1.0.0",
+  "description": " ",
+  "author": "Daniel Nunes",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -65,5 +65,17 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/danielnunes17/vitors-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danielnunes17/vitors-app/issues"
+  },
+  "homepage": "https://github.com/danielnunes17/vitors-app#readme"
 }
