@@ -16,8 +16,7 @@ export class CreateUserDto {
     description: 'Full name of the user',
   })
   @IsString()
-  @MaxLength(50)
-  fullName: string;
+  name: string;
 
   @ApiProperty({
     description: 'User CPF (only numbers)',

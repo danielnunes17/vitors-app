@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
-import { UserSchema } from './schema/user.schema';
+import { User } from './schema/user.schema';
 import { InjectModel } from '@nestjs/mongoose/dist/common/mongoose.decorators';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(UserSchema.name)
-    private readonly userModel: Model<UserSchema>,
+    @InjectModel(User.name)
+    private readonly userModel: Model<User>,
   ) { }
 
   async create(createUserDto: CreateUserDto) {
@@ -18,16 +18,16 @@ export class UserService {
   }
 
   async findAll() {
-    const user = await this.userModel.find();
+    const user = await this.userModel.find().lean();
     return user;
   }
 
   async findOne(id: string) {
-    const user = await this.userModel.findById({ _id: id });
+    const user = await this.userModel.findById({ _id: id }).lean();
     return user;
   }
   async findByEmail(email: string) {
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findOne({ email }).exec();
     return user;
   }
 
@@ -35,7 +35,8 @@ export class UserService {
     return await this.userModel.findByIdAndUpdate(id, updateUserDto).lean();
   }
 
-  async remove(id: string, updateUserDto: UpdateUserDto) {
-    return await this.userModel.deleteOne({ _id: id, updateUserDto }).lean();
+  async remove(id: string) {
+    const user = await this.userModel.deleteOne({ _id: id }).lean();
+    return user;
   }
 }
